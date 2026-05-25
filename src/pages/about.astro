@@ -180,12 +180,69 @@ import { SITE_TITLE } from '../consts';
   }
 
   @media (max-width: 768px) {
+    .about-hero {
+      padding: 3rem 0 1.5rem;
+    }
+    
     .about-hero h1 {
       font-size: 2.5rem;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.1rem;
     }
 
     .principles {
       grid-template-columns: 1fr;
+    }
+    
+    .about-content h2 {
+      margin-top: 2.5rem;
+    }
+    
+    .principle {
+      padding: 1.25rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .about-hero {
+      padding: 2.5rem 0 1rem;
+    }
+    
+    .about-hero h1 {
+      font-size: 2rem;
+    }
+    
+    .hero-subtitle {
+      font-size: 1rem;
+    }
+    
+    .about-content h2 {
+      margin-top: 2rem;
+      font-size: 1.35rem;
+    }
+    
+    .principle {
+      padding: 1rem;
+    }
+    
+    .principle h3 {
+      font-size: 1rem;
+    }
+    
+    .principle p {
+      font-size: 0.9rem;
+    }
+    
+    .contact-link {
+      padding: 0.6rem 1rem;
+      font-size: 0.95rem;
+    }
+    
+    .contact-link svg {
+      width: 18px;
+      height: 18px;
     }
   }
 </style>

@@ -173,6 +173,10 @@ const posts = (await getCollection('blog')).sort(
   }
 
   @media (max-width: 768px) {
+    .blog-header {
+      padding: 2rem 0 1.5rem;
+    }
+    
     .blog-header h1 {
       font-size: 2rem;
     }
@@ -183,6 +187,54 @@ const posts = (await getCollection('blog')).sort(
 
     .post-card.featured .post-title {
       font-size: 1.35rem;
+    }
+    
+    .post-content {
+      padding: 1.25rem;
+    }
+    
+    .post-description {
+      font-size: 0.9rem;
+      -webkit-line-clamp: 2;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .blog-header h1 {
+      font-size: 1.75rem;
+    }
+    
+    .blog-header p {
+      font-size: 0.95rem;
+    }
+    
+    .post-card {
+      border-radius: 8px;
+    }
+    
+    .post-content {
+      padding: 1rem;
+    }
+    
+    .post-title {
+      font-size: 1.1rem;
+    }
+
+    .post-card.featured .post-title {
+      font-size: 1.2rem;
+    }
+    
+    .post-meta {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+    
+    .tag {
+      font-size: 0.75rem;
     }
   }
 </style>

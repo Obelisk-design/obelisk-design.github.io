@@ -287,6 +287,79 @@ hr {
   h3 {
     font-size: 1.25rem;
   }
+  
+  /* Code blocks horizontal scroll on mobile */
+  pre {
+    padding: 1rem;
+    font-size: 0.85rem;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Tables scrollable on mobile */
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Inline code smaller */
+  code {
+    font-size: 0.85em;
+    word-break: break-word;
+  }
+  
+  /* Blockquote full width */
+  blockquote {
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0.75rem 1rem;
+  }
+  
+  /* Lists tighter spacing */
+  ul, ol {
+    padding-left: 1.25rem;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+  body {
+    font-size: 15px;
+  }
+  
+  main {
+    padding: 1.5rem 0.75rem;
+  }
+  
+  h1 {
+    font-size: 1.75rem;
+  }
+  
+  h2 {
+    font-size: 1.35rem;
+  }
+  
+  h3 {
+    font-size: 1.15rem;
+  }
+  
+  pre {
+    padding: 0.75rem;
+    font-size: 0.8rem;
+    border-radius: 6px;
+    margin-left: -0.25rem;
+    margin-right: -0.25rem;
+    width: calc(100% + 0.5rem);
+  }
+  
+  img {
+    margin-left: -0.25rem;
+    margin-right: -0.25rem;
+    width: calc(100% + 0.5rem);
+    max-width: none;
+    border-radius: 6px;
+  }
 }
 
 /* Print styles */

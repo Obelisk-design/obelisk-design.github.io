@@ -15,7 +15,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
     <main>
       <section class="hero">
         <div class="hero-content">
-          <h1>Obelisk Design</h1>
+          <h1>Obelisk Design Bloooooog</h1>
           <p class="hero-subtitle">从原理到实践，深入探索技术与设计</p>
           <div class="hero-cta">
             <a href="/blog" class="btn-primary">探索文章</a>
@@ -149,6 +149,41 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 
     .feature-grid {
       grid-template-columns: 1fr;
+    }
+    
+    .feature-card {
+      padding: 1.5rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .hero {
+      padding: 3rem 0 1.5rem;
+    }
+    
+    .hero h1 {
+      font-size: 2rem;
+    }
+    
+    .hero-subtitle {
+      font-size: 1rem;
+    }
+    
+    .btn-primary {
+      padding: 0.6rem 1.25rem;
+      font-size: 0.95rem;
+    }
+    
+    .feature-card {
+      padding: 1.25rem;
+    }
+    
+    .feature-card h3 {
+      font-size: 1rem;
+    }
+    
+    .feature-card p {
+      font-size: 0.9rem;
     }
   }
 </style>
