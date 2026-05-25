@@ -1,0 +1,25 @@
+{
+  "name": "Obelisk Design Bloooooog",
+  "short_name": "Obelisk Blog",
+  "description": "从原理到实践，深入探索技术与设计 - 第一性原理驱动的技术博客",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0e17",
+  "theme_color": "#00d4ff",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    }
+  ],
+  "categories": ["technology", "education", "blog"],
+  "lang": "zh-CN"
+}

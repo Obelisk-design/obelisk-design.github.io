@@ -9,11 +9,25 @@ import Header from '../components/Header.astro';
 type Props = CollectionEntry<'blog'>['data'];
 
 const { title, description, pubDate, updatedDate, heroImage, tags } = Astro.props;
+
+// Generate keywords from title and tags
+const keywords = tags ? `${tags.join(', ')}, 技术博客, 深度解析` : '技术博客, 深度解析';
 ---
 
 <html lang="zh-CN">
   <head>
-    <BaseHead title={title} description={description} />
+    <BaseHead 
+      title={title} 
+      description={description} 
+      image={heroImage}
+      keywords={keywords}
+      article={{
+        publishedTime: pubDate,
+        modifiedTime: updatedDate,
+        author: "Obelisk Design",
+        tags: tags
+      }}
+    />
     <style>
       main {
         max-width: 800px;

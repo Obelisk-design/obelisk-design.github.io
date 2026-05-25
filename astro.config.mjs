@@ -7,7 +7,17 @@ import { defineConfig, fontProviders } from 'astro/config';
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://obelisk-design.github.io',
-	integrations: [mdx(), sitemap()],
+	integrations: [
+		mdx(),
+		sitemap({
+			i18n: {
+				defaultLocale: 'zh',
+				locales: {
+					zh: 'zh-CN',
+				},
+			},
+		}),
+	],
 	fonts: [
 		{
 			provider: fontProviders.local(),

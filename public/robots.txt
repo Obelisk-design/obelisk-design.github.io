@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://obelisk-design.github.io/sitemap-index.xml
+
+# RSS
+Allow: /rss.xml
+
+# Crawl delay (optional, respected by some bots)
+Crawl-delay: 1

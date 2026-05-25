@@ -36,6 +36,16 @@ html {
   color-scheme: dark;
 }
 
+/* Mobile optimizations */
+* {
+  -webkit-tap-highlight-color: transparent;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: var(--font-sans);
   margin: 0;
@@ -45,6 +55,11 @@ body {
   font-size: 18px;
   line-height: 1.7;
   min-height: 100vh;
+  /* Prevent overscroll bounce on iOS */
+  overscroll-behavior: none;
+  /* Better font rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   /* Subtle grid pattern overlay */
   background-image: 
     radial-gradient(ellipse 80% 50% at 50% -20%, rgba(0, 212, 255, 0.08), transparent),
@@ -240,6 +255,19 @@ hr {
   background: var(--accent);
 }
 
+/* Mobile scrollbar - larger for touch */
+@media (max-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: var(--accent);
+    border-radius: 3px;
+  }
+}
+
 /* Screen reader only */
 .sr-only {
   border: 0;
@@ -270,6 +298,8 @@ hr {
 @media (max-width: 768px) {
   body {
     font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
   }
   
   main {
@@ -288,19 +318,45 @@ hr {
     font-size: 1.25rem;
   }
   
-  /* Code blocks horizontal scroll on mobile */
+  /* Code blocks horizontal scroll on mobile with visual hint */
   pre {
     padding: 1rem;
     font-size: 0.85rem;
     -webkit-overflow-scrolling: touch;
+    overflow-x: auto;
+    position: relative;
+    /* Gradient hint that content can scroll */
+    background: 
+      linear-gradient(to right, transparent 90%, var(--bg-code) 100%),
+      var(--bg-code);
+    background-position: right center;
+    background-repeat: no-repeat;
+    background-size: 10% 100%;
   }
   
-  /* Tables scrollable on mobile */
+  pre:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 20px;
+    background: linear-gradient(to right, rgba(0,212,255,0.1), transparent);
+    pointer-events: none;
+  }
+  
+  /* Tables scrollable on mobile - allow wrapping for better readability */
   table {
     display: block;
     overflow-x: auto;
-    white-space: nowrap;
+    white-space: normal;
+    word-break: break-word;
     -webkit-overflow-scrolling: touch;
+  }
+  
+  th, td {
+    white-space: normal;
+    min-width: 80px;
   }
   
   /* Inline code smaller */
@@ -319,6 +375,17 @@ hr {
   /* Lists tighter spacing */
   ul, ol {
     padding-left: 1.25rem;
+  }
+  
+  /* Better touch targets */
+  a, button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Prevent zoom on input focus (iOS) */
+  input, textarea, select {
+    font-size: 16px;
   }
 }
 
