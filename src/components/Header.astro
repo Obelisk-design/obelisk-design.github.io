@@ -91,16 +91,69 @@ import HeaderLink from './HeaderLink.astro';
   }
 
   @media (max-width: 768px) {
-    nav {
-      padding: 0.75rem 1rem;
-    }
-    
-    .logo-text {
-      display: none;
-    }
-    
-    .social-links {
-      display: none;
-    }
+  nav {
+    padding: 0.75rem 1rem;
   }
+  
+  .nav-links {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(10, 14, 23, 0.98);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    z-index: 200;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  
+  .nav-links.open {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .nav-links a {
+    font-size: 1.25rem;
+  }
+  
+  .social-links {
+    display: none;
+  }
+  
+  .menu-toggle {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 300;
+  }
+  
+  .menu-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--text-primary);
+    transition: all 0.3s ease;
+  }
+  
+  .menu-toggle.open span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+  
+  .menu-toggle.open span:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .menu-toggle.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+}
 </style>
