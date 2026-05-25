@@ -1,63 +1,191 @@
 ---
-import AboutHeroImage from '../assets/blog-placeholder-about.jpg';
-import Layout from '../layouts/BlogPost.astro';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE } from '../consts';
 ---
 
-<Layout
-	title="About Me"
-	description="Lorem ipsum dolor sit amet"
-	pubDate={new Date('August 08 2021')}
-	heroImage={AboutHeroImage}
->
-	<p>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-		labore et dolore magna aliqua. Vitae ultricies leo integer malesuada nunc vel risus commodo
-		viverra. Adipiscing enim eu turpis egestas pretium. Euismod elementum nisi quis eleifend quam
-		adipiscing. In hac habitasse platea dictumst vestibulum. Sagittis purus sit amet volutpat. Netus
-		et malesuada fames ac turpis egestas. Eget magna fermentum iaculis eu non diam phasellus
-		vestibulum lorem. Varius sit amet mattis vulputate enim. Habitasse platea dictumst quisque
-		sagittis. Integer quis auctor elit sed vulputate mi. Dictumst quisque sagittis purus sit amet.
-	</p>
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <BaseHead title={`关于 - ${SITE_TITLE}`} description="关于 Obelisk Design 博客" />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <section class="about-hero">
+        <h1>关于</h1>
+        <p class="hero-subtitle">第一性原理驱动的技术博客</p>
+      </section>
 
-	<p>
-		Morbi tristique senectus et netus. Id semper risus in hendrerit gravida rutrum quisque non
-		tellus. Habitasse platea dictumst quisque sagittis purus sit amet. Tellus molestie nunc non
-		blandit massa. Cursus vitae congue mauris rhoncus. Accumsan tortor posuere ac ut. Fringilla urna
-		porttitor rhoncus dolor. Elit ullamcorper dignissim cras tincidunt lobortis. In cursus turpis
-		massa tincidunt dui ut ornare lectus. Integer feugiat scelerisque varius morbi enim nunc.
-		Bibendum neque egestas congue quisque egestas diam. Cras ornare arcu dui vivamus arcu felis
-		bibendum. Dignissim suspendisse in est ante in nibh mauris. Sed tempus urna et pharetra pharetra
-		massa massa ultricies mi.
-	</p>
+      <section class="about-content">
+        <h2>为什么存在</h2>
+        <p>
+          大多数技术内容停留在表面——告诉你「怎么做」，却不解释「为什么」。
+          这导致知识成为一种不可移植的片段：你知道某个解决方案，但无法推导它，
+          也无法在新的场景下变异它。
+        </p>
+        <p>
+          Obelisk Design 试图打破这个模式。我们不依赖类比和「最佳实践」，
+          而是从根本真理出发，追溯知识的源头，揭示隐藏的机制和假设。
+        </p>
 
-	<p>
-		Mollis nunc sed id semper risus in. Convallis a cras semper auctor neque. Diam sit amet nisl
-		suscipit. Lacus viverra vitae congue eu consequat ac felis donec. Egestas integer eget aliquet
-		nibh praesent tristique magna sit amet. Eget magna fermentum iaculis eu non diam. In vitae
-		turpis massa sed elementum. Tristique et egestas quis ipsum suspendisse ultrices. Eget lorem
-		dolor sed viverra ipsum. Vel turpis nunc eget lorem dolor sed viverra. Posuere ac ut consequat
-		semper viverra nam. Laoreet suspendisse interdum consectetur libero id faucibus. Diam phasellus
-		vestibulum lorem sed risus ultricies tristique. Rhoncus dolor purus non enim praesent elementum
-		facilisis. Ultrices tincidunt arcu non sodales neque. Tempus egestas sed sed risus pretium quam
-		vulputate. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Fringilla
-		urna porttitor rhoncus dolor purus non. Amet dictum sit amet justo donec enim.
-	</p>
+        <h2>核心理念</h2>
+        <div class="principles">
+          <div class="principle">
+            <h3>从原理出发</h3>
+            <p>
+              不继承「标准做法」，而是验证每一个假设。
+              如果我无法推导一个结论，我就不应该断言它。
+            </p>
+          </div>
+          <div class="principle">
+            <h3>机制高于摘要</h3>
+            <p>
+              表面级别的总结掩盖了真正运作的机制。
+              我们深入一层，理解事物是如何工作的，而不是只知道它们是什么。
+            </p>
+          </div>
+          <div class="principle">
+            <h3>追溯源头</h3>
+            <p>
+              每一个技术选择都有历史语境。
+              理解它为什么被发明，才能判断它是否仍然适用。
+            </p>
+          </div>
+        </div>
 
-	<p>
-		Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Tortor posuere ac ut consequat semper
-		viverra. Tellus mauris a diam maecenas sed enim ut sem viverra. Venenatis urna cursus eget nunc
-		scelerisque viverra mauris in. Arcu ac tortor dignissim convallis aenean et tortor at. Curabitur
-		gravida arcu ac tortor dignissim convallis aenean et tortor. Egestas tellus rutrum tellus
-		pellentesque eu. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. Ut enim
-		blandit volutpat maecenas volutpat blandit aliquam etiam. Id donec ultrices tincidunt arcu. Id
-		cursus metus aliquam eleifend mi.
-	</p>
+        <h2>内容风格</h2>
+        <p>
+          所有文章遵循「从浅到深」的结构：入门者可以理解基础概念，
+          专业者可以获得深层洞察。我们不会为了简洁牺牲精确，
+          也不会为了完整牺牲可读性。
+        </p>
+        
+        <h2>技术栈</h2>
+        <p>
+          本博客使用 Astro 构建，主题设计遵循深色科技简约风格。
+          所有内容使用 Markdown 撰写，存储在 GitHub 上进行版本管理。
+        </p>
+        <ul>
+          <li><strong>框架</strong>: Astro</li>
+          <li><strong>样式</strong>: 自定义 CSS（深色主题）</li>
+          <li><strong>字体</strong>: Inter + JetBrains Mono</li>
+          <li><strong>版本管理</strong>: Git + GitHub</li>
+          <li><strong>编辑器</strong>: Hermes AI Agent</li>
+        </ul>
 
-	<p>
-		Tempus quam pellentesque nec nam aliquam sem. Risus at ultrices mi tempus imperdiet. Id porta
-		nibh venenatis cras sed felis eget velit. Ipsum a arcu cursus vitae. Facilisis magna etiam
-		tempor orci eu lobortis elementum. Tincidunt dui ut ornare lectus sit. Quisque non tellus orci
-		ac. Blandit libero volutpat sed cras. Nec tincidunt praesent semper feugiat nibh sed pulvinar
-		proin gravida. Egestas integer eget aliquet nibh praesent tristique magna.
-	</p>
-</Layout>
+        <h2>联系方式</h2>
+        <p>
+          有问题或建议？欢迎通过 GitHub 与我们交流：
+        </p>
+        <div class="contact-links">
+          <a href="https://github.com/Obelisk-design" target="_blank" class="contact-link">
+            <svg viewBox="0 0 16 16" width="20" height="20" fill="currentColor">
+              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+            </svg>
+            GitHub: Obelisk-design
+          </a>
+        </div>
+      </section>
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  .about-hero {
+    padding: 4rem 0 2rem;
+    text-align: center;
+  }
+
+  .about-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    margin-bottom: 0;
+  }
+
+  .about-content {
+    padding-bottom: 3rem;
+  }
+
+  .about-content h2 {
+    margin-top: 3rem;
+    padding-bottom: 0.75rem;
+  }
+
+  .about-content p {
+    line-height: 1.8;
+  }
+
+  .about-content ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .about-content li {
+    padding: 0.5rem 0;
+    color: var(--text-secondary);
+  }
+
+  .principles {
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .principle {
+    padding: 1.5rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+  }
+
+  .principle h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .principle p {
+    font-size: 0.95rem;
+    margin-bottom: 0;
+  }
+
+  .contact-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1.5rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text-primary);
+    transition: all 0.2s ease;
+  }
+
+  .contact-link:hover {
+    border-color: var(--border-accent);
+    color: var(--accent);
+  }
+
+  @media (max-width: 768px) {
+    .about-hero h1 {
+      font-size: 2.5rem;
+    }
+
+    .principles {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

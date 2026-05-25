@@ -2,7 +2,7 @@
 title: 'Matt Pocock 的 AI Agent Skills：工程师的实战武器库'
 description: '深入解析 10 万 Star 的 AI 编程技能库，从入门到精通'
 pubDate: '2026-05-25'
-heroImage: '/images/blog-placeholder-1.jpg'
+heroImage: '../../assets/blog-placeholder-1.jpg'
 tags: ['AI', 'Engineering', 'Productivity', 'Claude', 'TypeScript']
 ---
 
