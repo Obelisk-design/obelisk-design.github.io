@@ -1,7 +1,7 @@
 ---
 title: 'Spec 写好了怎么落地？Harness Engineering 实战'
 description: 'Harness Engineering 是知识沉淀的自动化，让 AI 在正确的约束下执行，人在正确的时机介入。五层架构 + 五个关键时刻 + 24周落地路线。'
-pubDate: '2026-05-25'
+pubDate: '2026-05-21'
 heroImage: '../../assets/blog-placeholder-1.jpg'
 tags: ['AI', 'Agent', 'Harness Engineering', 'Spec', 'LLM', '工程化']
 ---

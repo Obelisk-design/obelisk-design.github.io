@@ -1,7 +1,7 @@
 ---
 title: '从 LLM 到 Agent：理解 AI 智能体的底层逻辑'
 description: '深入剖析 LLM 的本质机制，从 Token、Prompt、Context 到 Scaling Law 与涌现，理解为什么"预测下一个词"的模型能推理、写代码、做 Agent'
-pubDate: '2026-05-25'
+pubDate: '2026-05-22'
 heroImage: '../../assets/blog-placeholder-2.jpg'
 tags: ['AI', 'LLM', 'Agent', 'Deep Learning', 'Scaling Law']
 ---

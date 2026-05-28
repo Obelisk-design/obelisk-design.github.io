@@ -1,0 +1,54 @@
+---
+// Page view counter component
+// Uses localStorage for demo purposes
+// For production, consider integrating with an API like CountAPI.xyz
+---
+
+<div class="page-counter" id="page-counter" data-page={Astro.url.pathname}>
+  <span class="counter-icon">👁</span>
+  <span class="counter-value" id="counter-value">0</span>
+  <span class="counter-label">次浏览</span>
+</div>
+
+<script>
+  const counter = document.getElementById('page-counter');
+  const counterValue = document.getElementById('counter-value');
+  const pagePath = counter?.dataset.page;
+
+  if (pagePath && counterValue) {
+    // Get current count from localStorage
+    const storageKey = `pageviews_${pagePath}`;
+    let count = parseInt(localStorage.getItem(storageKey) || '0');
+
+    // Increment count
+    count++;
+    localStorage.setItem(storageKey, count.toString());
+
+    // Display count
+    counterValue.textContent = count.toLocaleString();
+  }
+</script>
+
+<style>
+  .page-counter {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    opacity: 0.8;
+  }
+
+  .counter-icon {
+    font-size: 0.9rem;
+  }
+
+  .counter-value {
+    font-weight: 500;
+    color: var(--text-secondary);
+  }
+
+  .counter-label {
+    font-size: 0.8rem;
+  }
+</style>

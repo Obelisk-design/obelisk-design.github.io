@@ -15,10 +15,11 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
     <main>
       <section class="hero" transition:animate="slide">
         <div class="hero-content">
-          <h1>从原理到实践</h1>
-          <p class="hero-subtitle">深入探索技术与设计</p>
+          <h1>第一性原理驱动的技术写作</h1>
+          <p class="hero-subtitle">追溯知识源头，揭示隐藏机制，从"知道"到"理解"</p>
           <div class="hero-cta">
-            <a href="/blog" class="btn-primary">探索文章</a>
+            <a href="/blog" class="btn-primary">浏览文章</a>
+            <a href="/tags" class="btn-secondary">按标签探索</a>
           </div>
         </div>
       </section>
@@ -27,18 +28,18 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
         <div class="feature-grid">
           <div class="feature-card hover-lift">
             <div class="feature-icon">01</div>
-            <h3>第一性原理</h3>
-            <p>不依赖类比和惯例，从根本真理出发推导解决方案</p>
+            <h3>从原理出发</h3>
+            <p>不继承"标准做法"，验证每一个假设，理解"为什么这样做"</p>
           </div>
           <div class="feature-card hover-lift">
             <div class="feature-icon">02</div>
-            <h3>深度解析</h3>
-            <p>超越表面，追溯知识源头，揭示隐藏的机制和假设</p>
+            <h3>机制高于摘要</h3>
+            <p>深入一层，理解事物如何工作，而不只是知道它是什么</p>
           </div>
           <div class="feature-card hover-lift">
             <div class="feature-icon">03</div>
-            <h3>实战导向</h3>
-            <p>理论服务于实践，提供可直接应用的工作流和方法论</p>
+            <h3>可迁移的洞察</h3>
+            <p>获得可在新场景应用的深层理解，而非碎片化的技巧</p>
           </div>
         </div>
       </section>
@@ -110,6 +111,22 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
     transform: translateY(-2px);
     box-shadow: var(--glow);
     color: var(--bg-primary);
+  }
+
+  .btn-secondary {
+    padding: 0.875rem 2rem;
+    background: transparent;
+    color: var(--text-primary);
+    font-weight: 500;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    transition: all 0.2s ease;
+    display: inline-block;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--accent);
+    color: var(--accent);
   }
 
   .features {

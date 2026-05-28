@@ -1,0 +1,131 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import { SITE_TITLE } from '../../consts';
+
+// Get all unique tags from blog posts
+const posts = await getCollection('blog');
+const allTags = posts
+  .flatMap((post) => post.data.tags || [])
+  .filter((tag, index, self) => self.indexOf(tag) === index)
+  .sort();
+
+// Count posts per tag
+const tagCounts: Record<string, number> = {};
+allTags.forEach((tag) => {
+  tagCounts[tag] = posts.filter((post) => post.data.tags?.includes(tag)).length;
+});
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <BaseHead title={`标签 - ${SITE_TITLE}`} description="按标签浏览博客文章" />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <section class="tags-header">
+        <h1>标签</h1>
+        <p>按主题分类浏览文章</p>
+      </section>
+
+      <section class="tags-grid">
+        {allTags.map((tag) => (
+          <a href={`/tags/${tag}/`} class="tag-card">
+            <span class="tag-name">{tag}</span>
+            <span class="tag-count">{tagCounts[tag]} 篇文章</span>
+          </a>
+        ))}
+      </section>
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  .tags-header {
+    padding: 3rem 0 2rem;
+    text-align: center;
+  }
+
+  .tags-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .tags-header p {
+    color: var(--text-secondary);
+    margin-bottom: 0;
+  }
+
+  .tags-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+    padding-bottom: 3rem;
+  }
+
+  .tag-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    text-align: center;
+  }
+
+  .tag-card:hover {
+    border-color: var(--border-accent);
+    transform: translateY(-2px);
+  }
+
+  .tag-name {
+    color: var(--accent);
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+
+  .tag-count {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+  }
+
+  @media (max-width: 768px) {
+    .tags-header {
+      padding: 2rem 0 1.5rem;
+    }
+
+    .tags-header h1 {
+      font-size: 2rem;
+    }
+
+    .tags-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .tag-card {
+      padding: 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .tags-header h1 {
+      font-size: 1.75rem;
+    }
+
+    .tag-name {
+      font-size: 0.9rem;
+    }
+
+    .tag-count {
+      font-size: 0.8rem;
+    }
+  }
+</style>
