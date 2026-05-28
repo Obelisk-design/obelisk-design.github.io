@@ -26,8 +26,8 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          # NOTE: Do NOT use cache: 'npm' - causes "Exit handler never called" on GitHub Actions runners
+          node-version: '22'
+          # NOTE: Do NOT use cache: 'npm' - causes "Exit handler never called"
       - name: Install dependencies
         run: npm install --legacy-peer-deps
 
