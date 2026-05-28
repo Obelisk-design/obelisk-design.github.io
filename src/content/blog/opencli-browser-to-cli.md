@@ -2,7 +2,7 @@
 title: 'OpenCLI：把任意网站变成 CLI，让 AI Agent 操作你的浏览器'
 description: 'OpenCLI 是一个强大的工具，可以将任何网站转换为 CLI 命令，并让 AI Agent 通过你已登录的浏览器进行自动化操作。支持 100+ 网站适配器。'
 pubDate: '2026-05-19'
-heroImage: '../../assets/blog-placeholder-2.jpg'
+heroImage: '../../assets/opencli-browser-to-cli-hero.webp'
 tags: ["AI", "CLI", "Browser", "Agent", "自动化", "开源"]
 ---
 

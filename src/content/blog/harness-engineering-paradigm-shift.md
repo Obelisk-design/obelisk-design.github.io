@@ -2,7 +2,7 @@
 title: "Harness Engineering：从 Prompt 到 Agent 环境的范式转移"
 pubDate: "2026-05-20"
 description: "为什么 Agents 难的不是模型而是环境？深入解析三阶段演进与业界实践"
-heroImage: '../../assets/blog-placeholder-1.jpg'
+heroImage: '../../assets/harness-engineering-paradigm-shift-hero.webp'
 tags: ['Harness Engineering', 'Agent', 'LLM', 'Prompt Engineering', 'Context Engineering', 'Anthropic', 'Stripe', 'Codex']
 ---
 
