@@ -20,5 +20,12 @@
   },
   "devDependencies": {
     "canvas": "^3.2.3"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "canvas",
+      "esbuild",
+      "sharp"
+    ]
   }
 }
