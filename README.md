@@ -1,63 +1,87 @@
-# Astro Starter Kit: Blog
+# Obelisk Design Blog
 
-```sh
-npm create astro@latest -- --template blog
+> 从原理到实践，深入探索 AI 与工程的世界。
+
+🌐 **在线地址**：[obelisk-design.github.io/blog](https://obelisk-design.github.io/blog/)
+
+## 关于
+
+这是一个用 [Astro](https://astro.build) 构建的个人技术博客，专注于以下主题：
+
+- **AI Agent 工程化** — 从 LLM 到 Agent 的范式转变、编排模式、工具调用、RAG
+- **AI 开发工具生态** — Claude Code、Cursor、Codex、MCP、v0 等工具的深度解析与实战
+- **技术前沿追踪** — 每日从 Dev.to、Hacker News、GitHub Trending 自动筛选、AI 分析、中文编译
+- **工程方法论** — 架构设计、中间层实践、CLI 到 Agent 的工作流演进
+
+所有文章均为中文，目标读者是有一定技术背景但对 AI 领域持续好奇的开发者。
+
+## 技术栈
+
+| 组件 | 技术 |
+|------|------|
+| 框架 | Astro 4.x |
+| 内容 | Markdown + MDX (Content Collections) |
+| 样式 | 自定义 CSS (深色科技风) |
+| 字体 | Atkinson Hyperlegible (本地托管) |
+| 构建 | pnpm + GitHub Actions |
+| 部署 | GitHub Pages + 本地 nginx (双通道) |
+| SEO | Sitemap + JSON-LD + Open Graph + robots.txt |
+
+## 自动化 Pipeline
+
+博客内容通过两套自动化系统生成并发布：
+
+### 1. 技术日报 (Tech Daily Digest)
+
+- 定时从 Dev.to、Hacker News、GitHub Trending 抓取 AI 相关内容
+- 7 天去重，过滤已发布内容
+- AI 按渠道独立生成中文点评文章
+- 每天最多 3 篇（每渠道 1 篇）
+- 推送至 `dev-blog` 分支，每日 17:00 自动合并到 `main` 触发部署
+
+### 2. 微信文章处理
+
+- 用户发送微信文章链接 → 抓取 → AI 深度拓展写作
+- 目标篇幅：源材料的 3-5 倍深度
+- 交叉引用业界实践，补充历史脉络与工程洞察
+
+## 项目结构
+
 ```
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-Features:
-
-- ✅ Minimal styling (make it your own!)
-- ✅ 100/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and Open Graph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-├── public/
+├── .github/workflows/
+│   └── deploy.yml          # GitHub Actions 构建部署
+├── public/                  # 静态资源 (favicon, robots.txt, manifest)
 ├── src/
-│   ├── assets/
-│   ├── components/
-│   ├── content/
-│   ├── layouts/
-│   └── pages/
-├── astro.config.mjs
-├── README.md
-├── package.json
-└── tsconfig.json
+│   ├── assets/             # 图片、字体
+│   ├── components/         # Astro 组件
+│   ├── content/blog/       # 博客文章 (Markdown/MDX)
+│   ├── layouts/            # 页面布局
+│   ├── pages/              # 路由页面
+│   └── styles/             # 全局样式
+├── astro.config.mjs        # Astro 配置
+└── package.json
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## 本地开发
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+```bash
+# 安装依赖
+pnpm install
 
-The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
+# 启动开发服务器 (localhost:4321)
+pnpm run dev
 
-Any static assets, like images, can be placed in the `public/` directory.
+# 生产构建
+pnpm run build
+```
 
-## 🧞 Commands
+## 分支策略
 
-All commands are run from the root of the project, from a terminal:
+| 分支 | 用途 |
+|------|------|
+| `main` | 生产分支，GitHub Pages 从此构建部署 |
+| `dev-blog` | 日常内容推送，每日 17:00 自动合并到 `main` |
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## License
 
-## 👀 Want to learn more?
-
-Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
-
-## Credit
-
-This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
+MIT
