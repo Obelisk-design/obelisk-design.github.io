@@ -3,6 +3,7 @@
 > 从原理到实践，深入探索 AI 与工程的世界。
 
 🌐 **在线地址**：[obelisk-design.github.io/blog](https://obelisk-design.github.io/blog/)
+🌐 **在线地址**：[43.153.156.249:8080](https://43.153.156.249:8080/)
 
 ## 关于
 
