@@ -3,6 +3,8 @@
   Dark, minimal, tech-inspired
 */
 
+@import './animations.css';
+
 :root {
   /* Core palette - deep space blue */
   --bg-primary: #0a0e17;
