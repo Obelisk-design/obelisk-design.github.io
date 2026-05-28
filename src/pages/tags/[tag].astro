@@ -1,0 +1,196 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
+import Header from '../../components/Header.astro';
+import { SITE_TITLE } from '../../consts';
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection('blog');
+  const allTags = allPosts
+    .flatMap((post) => post.data.tags || [])
+    .filter((tag, index, self) => self.indexOf(tag) === index);
+
+  return allTags.map((tag) => ({
+    params: { tag },
+    props: {
+      posts: allPosts
+        .filter((post) => post.data.tags?.includes(tag))
+        .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()),
+    },
+  }));
+}
+
+const { tag } = Astro.params;
+const { posts } = Astro.props;
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <BaseHead title={`${tag} - ${SITE_TITLE}`} description={`标签 ${tag} 下的所有文章`} />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <section class="tag-header">
+        <a href="/tags/" class="back-link">← 所有标签</a>
+        <h1>{tag}</h1>
+        <p>{posts.length} 篇文章</p>
+      </section>
+
+      <section class="posts-grid">
+        {posts.map((post) => (
+          <article class="post-card">
+            <a href={`/blog/${post.id}/`}>
+              {post.data.heroImage && (
+                <div class="post-image">
+                  <Image width={400} height={200} src={post.data.heroImage} alt="" />
+                </div>
+              )}
+              <div class="post-content">
+                <h2 class="post-title">{post.data.title}</h2>
+                <p class="post-description">{post.data.description}</p>
+                <div class="post-meta">
+                  <FormattedDate date={post.data.pubDate} />
+                </div>
+              </div>
+            </a>
+          </article>
+        ))}
+      </section>
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  .tag-header {
+    padding: 3rem 0 2rem;
+    text-align: center;
+  }
+
+  .back-link {
+    display: inline-block;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    transition: color 0.2s ease;
+  }
+
+  .back-link:hover {
+    color: var(--accent);
+  }
+
+  .tag-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.75rem;
+    color: var(--accent);
+  }
+
+  .tag-header p {
+    color: var(--text-secondary);
+    margin-bottom: 0;
+  }
+
+  .posts-grid {
+    display: grid;
+    gap: 1.5rem;
+    padding-bottom: 3rem;
+  }
+
+  @media (min-width: 768px) {
+    .posts-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .post-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.2s ease;
+  }
+
+  .post-card:hover {
+    border-color: var(--border-accent);
+    transform: translateY(-4px);
+  }
+
+  .post-card a {
+    display: block;
+    color: inherit;
+  }
+
+  .post-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 0;
+  }
+
+  .post-content {
+    padding: 1.5rem;
+  }
+
+  .post-title {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+    line-height: 1.3;
+  }
+
+  .post-description {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .post-meta {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 768px) {
+    .tag-header {
+      padding: 2rem 0 1.5rem;
+    }
+
+    .tag-header h1 {
+      font-size: 2rem;
+    }
+
+    .post-title {
+      font-size: 1.1rem;
+    }
+
+    .post-content {
+      padding: 1.25rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .tag-header h1 {
+      font-size: 1.75rem;
+    }
+
+    .post-card {
+      border-radius: 8px;
+    }
+
+    .post-content {
+      padding: 1rem;
+    }
+
+    .post-title {
+      font-size: 1rem;
+    }
+  }
+</style>

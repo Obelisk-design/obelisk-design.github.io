@@ -15,19 +15,18 @@ import { SITE_TITLE } from '../consts';
     <main>
       <section class="about-hero">
         <h1>关于</h1>
-        <p class="hero-subtitle">第一性原理驱动的技术博客</p>
+        <p class="hero-subtitle">第一性原理驱动的技术写作实验室</p>
       </section>
 
       <section class="about-content">
         <h2>为什么存在</h2>
         <p>
-          大多数技术内容停留在表面——告诉你「怎么做」，却不解释「为什么」。
-          这导致知识成为一种不可移植的片段：你知道某个解决方案，但无法推导它，
-          也无法在新的场景下变异它。
+          大多数技术内容告诉你「怎么做」，却从不解释「为什么这样做有效」。
+          这让知识成为不可迁移的碎片——你会用某个方案，但无法推导它，也无法在新场景变异它。
         </p>
         <p>
-          Obelisk Design 试图打破这个模式。我们不依赖类比和「最佳实践」，
-          而是从根本真理出发，追溯知识的源头，揭示隐藏的机制和假设。
+          Obelisk Design 打破这个模式。我们不继承「最佳实践」，而是追溯源头，
+          理解技术选择的历史语境，揭示真正运作的机制。
         </p>
 
         <h2>核心理念</h2>
@@ -35,44 +34,42 @@ import { SITE_TITLE } from '../consts';
           <div class="principle">
             <h3>从原理出发</h3>
             <p>
-              不继承「标准做法」，而是验证每一个假设。
-              如果我无法推导一个结论，我就不应该断言它。
+              每一个结论都必须能被推导。如果我无法从基本假设推导一个观点，
+              我就不应该断言它——无论多少人认同它。
             </p>
           </div>
           <div class="principle">
             <h3>机制高于摘要</h3>
             <p>
-              表面级别的总结掩盖了真正运作的机制。
-              我们深入一层，理解事物是如何工作的，而不是只知道它们是什么。
+              表面总结掩盖了真正运作的系统。我们深入一层，
+              理解「如何工作」，而不只是知道「是什么」。
             </p>
           </div>
           <div class="principle">
-            <h3>追溯源头</h3>
+            <h3>追溯历史语境</h3>
             <p>
-              每一个技术选择都有历史语境。
-              理解它为什么被发明，才能判断它是否仍然适用。
+              每个技术选择都有被发明的原因。理解那个原因，
+              才能判断它今天是否仍然适用。
             </p>
           </div>
         </div>
 
         <h2>内容风格</h2>
         <p>
-          所有文章遵循「从浅到深」的结构：入门者可以理解基础概念，
-          专业者可以获得深层洞察。我们不会为了简洁牺牲精确，
-          也不会为了完整牺牲可读性。
+          文章遵循「从浅到深」的渐进结构：入门者理解基础概念，
+          专业者获得深层洞察。不为简洁牺牲精确，也不为完整牺牲可读性。
         </p>
-        
+
         <h2>技术栈</h2>
         <p>
-          本博客使用 Astro 构建，主题设计遵循深色科技简约风格。
-          所有内容使用 Markdown 撰写，存储在 GitHub 上进行版本管理。
+          本站使用 Astro 构建，采用深色科技简约主题。
+          内容在 GitHub 进行版本管理，使用 Hermes AI Agent 辅助写作。
         </p>
-        <ul>
-          <li><strong>框架</strong>: Astro</li>
-          <li><strong>样式</strong>: 自定义 CSS（深色主题）</li>
-          <li><strong>字体</strong>: Inter + JetBrains Mono</li>
-          <li><strong>版本管理</strong>: Git + GitHub</li>
-          <li><strong>编辑器</strong>: Hermes AI Agent</li>
+        <ul class="tech-list">
+          <li><span class="tech-label">框架</span> Astro 6.x</li>
+          <li><span class="tech-label">样式</span> 自定义 CSS</li>
+          <li><span class="tech-label">字体</span> Inter + JetBrains Mono</li>
+          <li><span class="tech-label">写作</span> Hermes AI Agent + Markdown</li>
         </ul>
 
         <h2>联系方式</h2>
@@ -128,9 +125,25 @@ import { SITE_TITLE } from '../consts';
     padding: 0;
   }
 
-  .about-content li {
-    padding: 0.5rem 0;
+  .tech-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.75rem;
+  }
+
+  .tech-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: var(--bg-card);
+    border-radius: 6px;
     color: var(--text-secondary);
+  }
+
+  .tech-label {
+    color: var(--accent);
+    font-weight: 500;
   }
 
   .principles {
