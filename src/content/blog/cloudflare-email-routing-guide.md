@@ -2,7 +2,7 @@
 title: "用域名邮箱构建隐形护城河：Cloudflare 邮件路由完全指南"
 pubDate: 2026-05-28
 description: "用一个 Gmail 注册所有账号是单点故障。本文教你用 Cloudflare 免费邮件路由搭建专属域名邮箱，实现账号隔离、无限注册、品牌背书和数据主权。"
-heroImage: '../../assets/cloudflare-email-routing-guide-hero.webp'
+heroImage: '../../assets/cloudflare-email-routing-hero.webp'
 ---
 
 ## 开篇
