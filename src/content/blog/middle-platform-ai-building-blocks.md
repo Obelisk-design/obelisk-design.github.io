@@ -2,7 +2,7 @@
 title: '中台蜕变：从代码供应商到 AI 积木供应商'
 description: '把中台改造成 AI Agent 的积木库，做三件事：积木说明书（Tool Description）+ 拼装规则（约束声明化）+ 参考图纸（样板间），让搭积木这个十年愿景第一次真正成立'
 pubDate: '2026-05-20'
-heroImage: '../../assets/blog-placeholder-1.jpg'
+heroImage: '../../assets/middle-platform-ai-building-blocks-hero.webp'
 tags: ['AI', '中台', 'Agent', '架构', 'Spec驱动开发']
 ---
 

@@ -2,6 +2,7 @@
 title: "OpenSpec 入门：AI 时代的规范驱动开发"
 pubDate: 2026-05-21
 description: "AI 编码助手指令模糊时会靠猜，OpenSpec 通过规范驱动开发（SDD）让 AI 先搞清楚要做什么，再动手写代码。"
+heroImage: '../../assets/openspec-spec-driven-development-hero.webp'
 ---
 
 ## 开篇
