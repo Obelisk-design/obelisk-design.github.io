@@ -1,7 +1,7 @@
 ---
 title: 'Matt Pocock 的 AI Agent Skills：工程师的实战武器库'
 description: '深入解析 10 万 Star 的 AI 编程技能库，从入门到精通'
-pubDate: '2026-05-25'
+pubDate: '2026-05-20'
 heroImage: '../../assets/blog-placeholder-1.jpg'
 tags: ['AI', 'Engineering', 'Productivity', 'Claude', 'TypeScript']
 ---
@@ -62,18 +62,18 @@ AI 就会按照 `tdd/SKILL.md` 中定义的完整流程执行——包括测试�
 ```markdown
 ---
 name: grill-me
-description: Interview the user relentlessly about a plan or design 
+description: Interview the user relentlessly about a plan or design
   until reaching shared understanding...
 ---
 
-Interview me relentlessly about every aspect of this plan 
-until we reach a shared understanding. Walk down each branch 
-of the design tree, resolving dependencies between decisions 
+Interview me relentlessly about every aspect of this plan
+until we reach a shared understanding. Walk down each branch
+of the design tree, resolving dependencies between decisions
 one-by-one. For each question, provide your recommended answer.
 
 Ask the questions one at a time.
 
-If a question can be answered by exploring the codebase, 
+If a question can be answered by exploring the codebase,
 explore the codebase instead.
 ```
 
@@ -221,7 +221,7 @@ test("checkout calls paymentService.process", async () => {
 
 **核心概念**：**模块深度（Module Depth）**
 
-> "The best modules are deep. They allow a lot of functionality 
+> "The best modules are deep. They allow a lot of functionality
 > to be accessed through a simple interface."
 > — *A Philosophy of Software Design*
 

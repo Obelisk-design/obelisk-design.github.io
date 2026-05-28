@@ -1,7 +1,7 @@
 ---
 title: '中台蜕变：从代码供应商到 AI 积木供应商'
 description: '把中台改造成 AI Agent 的积木库，做三件事：积木说明书（Tool Description）+ 拼装规则（约束声明化）+ 参考图纸（样板间），让搭积木这个十年愿景第一次真正成立'
-pubDate: '2026-05-25'
+pubDate: '2026-05-20'
 heroImage: '../../assets/blog-placeholder-1.jpg'
 tags: ['AI', '中台', 'Agent', '架构', 'Spec驱动开发']
 ---
@@ -70,29 +70,29 @@ MCP、Function Calling、A2A——协议在快速演进，今天的标准半年�
 tool:
   name: "create_order"
   description: "创建交易订单，含商品明细、价格计算和库存预扣"
-  
+
   # CLI 哲学：when_to_use / when_not_to_use 比参数说明重要 10 倍
   when_to_use: "用户确认购买意图，且已完成风控审核"
   when_not_to_use: "仅浏览或加购场景不应调用"
-  
+
   parameters:
     - {name: user_id, type: string, required: true, desc: "已实名认证的用户 ID"}
     - {name: items, type: array, required: true, desc: "商品明细（sku_id + quantity）"}
     - {name: promotion_id, type: string, required: false, desc: "营销活动 ID"}
-  
+
   preconditions:
     - "用户状态 = active"
     - "所有 SKU 库存 >= 请求数量"
     - "已通过 risk_check（顺序约束）"
-  
+
   side_effects:
     - "库存预扣（30min 未支付自动释放）"
     - "生成订单，状态 = pending_payment"
-  
+
   constraints:
     - {ref: "rule://payment_sequence", desc: "创建后 30min 内必须调用 initiate_payment"}
     - {ref: "rule://promo_conflict", desc: "不可叠加其他折扣类活动"}
-  
+
   error_handling:
     - {error: "E_STOCK_LOW", compensate: "调用 release_inventory，回滚预扣"}
     - {error: "E_RISK_FAIL", compensate: "返回风控原因，不创建订单"}

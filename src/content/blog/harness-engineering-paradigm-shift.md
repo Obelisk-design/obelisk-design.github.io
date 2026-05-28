@@ -1,6 +1,6 @@
 ---
 title: "Harness Engineering：从 Prompt 到 Agent 环境的范式转移"
-pubDate: "2026-05-26"
+pubDate: "2026-05-20"
 description: "为什么 Agents 难的不是模型而是环境？深入解析三阶段演进与业界实践"
 heroImage: '../../assets/blog-placeholder-1.jpg'
 tags: ['Harness Engineering', 'Agent', 'LLM', 'Prompt Engineering', 'Context Engineering', 'Anthropic', 'Stripe', 'Codex']
@@ -78,7 +78,7 @@ Anthropic 在 2025 年 11 月的工程博客中给了一个更精确的定义：
 真正的 Harness 包括：
 
 ```
-Harness = 框架（SDK/工具） 
+Harness = 框架（SDK/工具）
         + 约束（规则/权限/边界）
         + 观测（日志/监控/告警）
         + 反馈（测试/验证/修复循环）
@@ -112,7 +112,7 @@ Initializer Agent（只运行一次）
   ├── 写出完整 Feature List（200+ 条，初始标记为 failing）
   ├── 创建 progress 日志文件
   └── 初始 Git commit
-  
+
 Coding Agent（循环运行）
   ├── 读取 progress 文件 + Git 历史
   ├── 做增量工作
