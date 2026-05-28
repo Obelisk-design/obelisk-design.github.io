@@ -2,7 +2,7 @@
 title: 从 Prompt 到 Harness：AI Coding 的工程治理实践
 pubDate: 2025-05-20
 description: 如何让 AI 从"会写代码"进化到"持续稳定地写出符合项目规范的代码"——Skills、DSL 中间层、三角验证与 Development Harness 的完整实践路径。
-heroImage: '../../assets/ai-coding-harness-practice-hero.webp'
+heroImage: '../../assets/ai-coding-harness-hero.webp'
 tags: ["AI Coding", "工程治理", "Claude Code", "Skills", "Harness"]
 ---
 
