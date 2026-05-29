@@ -153,39 +153,86 @@ while ((match = headingRegex.exec(body)) !== null) {
         color: var(--text-primary);
       }
 
+      .article-actions {
+        display: flex;
+        gap: 0.75rem;
+        margin: 2rem 0;
+      }
+
+      @media (max-width: 1024px) {
+        /* Hide TOC, collapse grid to single column */
+        .article-container {
+          grid-template-columns: 1fr;
+        }
+
+        .article-content {
+          width: 100%;
+        }
+      }
+
       @media (max-width: 768px) {
         main {
           padding: 1rem;
         }
-        
+
         .article-header {
           margin-bottom: 2rem;
           padding-bottom: 1.5rem;
         }
-        
+
         .article-title {
           font-size: 1.75rem;
         }
 
+        /* Meta items wrap naturally on mobile instead of forced column */
         .article-meta {
-          flex-direction: column;
-          align-items: flex-start;
-          gap: 0.5rem;
+          flex-wrap: wrap;
+          gap: 0.4rem 0.75rem;
+          margin-bottom: 1rem;
         }
-        
+
         .article-description {
           font-size: 1rem;
         }
-        
+
         .hero-image {
           margin-left: -1rem;
           margin-right: -1rem;
           width: calc(100% + 2rem);
           margin-bottom: 1.5rem;
         }
-        
+
         .hero-image img {
           border-radius: 0;
+        }
+
+        /* Stack action buttons vertically on mobile */
+        .article-actions {
+          display: flex;
+          flex-direction: column;
+          gap: 0.75rem;
+          margin: 1.5rem 0;
+        }
+
+        /* Target child component buttons */
+        :global(.like-btn),
+        :global(.favorite-btn) {
+          justify-content: center;
+          padding: 0.75rem 1.5rem;
+          font-size: 1rem;
+          min-height: 44px;
+        }
+
+        /* Share buttons stack on mobile */
+        :global(.share-buttons) {
+          flex-direction: column;
+          gap: 0.5rem;
+        }
+
+        :global(.share-btn) {
+          justify-content: center;
+          padding: 0.75rem 1rem;
+          min-height: 44px;
         }
       }
       
@@ -246,9 +293,7 @@ while ((match = headingRegex.exec(body)) !== null) {
           <p class="article-description">{description}</p>
         </header>
         
-        <div class="prose">
-          {body}
-        </div>
+        <div class="prose" set:html={body}></div>
 
         <CopyCode />
 
