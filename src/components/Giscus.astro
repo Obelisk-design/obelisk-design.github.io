@@ -1,0 +1,43 @@
+---
+// Giscus Comments Component
+// Configuration from: https://giscus.app/zh-CN
+---
+
+<div class="giscus-container">
+  <script is:inline src="https://giscus.app/client.js"
+    data-repo="Obelisk-design/obelisk-design.github.io"
+    data-repo-id="R_kgDOSm7cGw"
+    data-category="Show and tell"
+    data-category-id="DIC_kwDOSm7cG84C-DY9"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="1"
+    data-input-position="top"
+    data-theme="preferred_color_scheme"
+    data-lang="zh-CN"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+
+<style>
+  .giscus-container {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  /* Giscus iframe styling */
+  .giscus-frame {
+    max-width: 100%;
+  }
+
+  @media (max-width: 768px) {
+    .giscus-container {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+    }
+  }
+</style>
