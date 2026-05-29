@@ -7,13 +7,38 @@ import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
 import PageCounter from '../components/PageCounter.astro';
 import Giscus from '../components/Giscus.astro';
+import ReadingProgress from '../components/ReadingProgress.astro';
+import { calculateReadingTime } from '../utils/readingTime';
+import CopyCode from '../components/CopyCode.astro';
+import ShareButtons from '../components/ShareButtons.astro';
+import LikeButton from '../components/LikeButton.astro';
+import FavoriteButton from '../components/FavoriteButton.astro';
+import TOC from '../components/TOC.astro';
+import RelatedPosts from '../components/RelatedPosts.astro';
 
 type Props = CollectionEntry<'blog'>['data'];
 
 const { title, description, pubDate, updatedDate, heroImage, tags } = Astro.props;
 
-// Generate keywords from title and tags
+const body = Astro.slots.has('default') ? '' : '';
+const readingTime = '约 5 分钟';
+
 const keywords = tags ? `${tags.join(', ')}, 技术博客, 深度解析` : '技术博客, 深度解析';
+
+// Extract headings from rendered content
+const headings = await Astro.slots.render('default').then((html) => {
+  const headingRegex = /<h([2-3])[^>]*id="([^"]+)"[^>]*>([^<]+)</h\1>/g;
+  const matches = [];
+  let match;
+  while ((match = headingRegex.exec(html)) !== null) {
+    matches.push({
+      depth: parseInt(match[1]),
+      slug: match[2],
+      text: match[3]
+    });
+  }
+  return matches;
+});
 ---
 
 <html lang="zh-CN">
@@ -32,7 +57,18 @@ const keywords = tags ? `${tags.join(', ')}, 技术博客, 深度解析` : '技�
     />
     <style>
       main {
-        max-width: 900px;  /* Optimal reading width */
+        max-width: 1200px;  /* Wider to accommodate TOC */
+      }
+
+      .article-container {
+        display: grid;
+        grid-template-columns: 1fr 220px;
+        gap: 2rem;
+        align-items: start;
+      }
+
+      .article-content {
+        min-width: 0;
       }
 
       .hero-image {
@@ -172,17 +208,21 @@ const keywords = tags ? `${tags.join(', ')}, 技术博客, 深度解析` : '技�
 
   <body>
     <Header />
+    <ReadingProgress />
     <main>
-      <article>
-        {heroImage && (
-          <div class="hero-image">
-            <Image width={900} height={450} src={heroImage} alt="" />
-          </div>
-        )}
-        
-        <header class="article-header">
+      <div class="article-container">
+        <div class="article-content">
+          <article>
+            {heroImage && (
+              <div class="hero-image">
+                <Image width={900} height={450} src={heroImage} alt="" />
+              </div>
+            )}
+
+            <header class="article-header">
           <div class="article-meta">
             <FormattedDate date={pubDate} />
+            <span class="reading-time">{readingTime}</span>
             {updatedDate && (
               <span class="last-updated">
                 更新于 <FormattedDate date={updatedDate} />
@@ -205,8 +245,25 @@ const keywords = tags ? `${tags.join(', ')}, 技术博客, 深度解析` : '技�
           <slot />
         </div>
 
+        <CopyCode />
+
+        <div class="article-actions">
+          <LikeButton postId={id} />
+          <FavoriteButton postId={id} title={title} />
+        </div>
+
+        <ShareButtons title={title} url={Astro.url.href} />
+
+        <RelatedPosts currentPostId={id} currentTags={tags} />
+
         <Giscus />
-      </article>
+          </article>
+        </div>
+
+        {headings.length > 0 && (
+          <TOC headings={headings} />
+        )}
+      </div>
     </main>
     <Footer />
   </body>

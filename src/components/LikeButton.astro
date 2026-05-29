@@ -1,0 +1,82 @@
+---
+// Like Button
+interface Props {
+  postId: string;
+}
+
+const { postId } = Astro.props;
+---
+
+<button class="like-btn" data-post-id={postId}>
+  <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+  </svg>
+  <span class="like-count">0</span>
+</button>
+
+<style>
+  .like-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .like-btn:hover {
+    border-color: var(--accent);
+  }
+
+  .like-btn.liked {
+    background: rgba(88, 166, 255, 0.1);
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .like-btn svg {
+    transition: transform 0.2s;
+  }
+
+  .like-btn.liked svg {
+    fill: var(--accent);
+    transform: scale(1.1);
+  }
+</style>
+
+<script define:vars={{ postId }}>
+  const btn = document.querySelector(`.like-btn[data-post-id="${postId}"]`);
+  if (!btn) return;
+
+  const countSpan = btn.querySelector('.like-count');
+  const storageKey = `likes-${postId}`;
+
+  // Load from localStorage
+  let liked = localStorage.getItem(storageKey) === 'true';
+  let count = parseInt(localStorage.getItem(`like-count-${postId}`) || '0');
+
+  function updateUI() {
+    if (liked) {
+      btn.classList.add('liked');
+    } else {
+      btn.classList.remove('liked');
+    }
+    if (countSpan) {
+      countSpan.textContent = count;
+    }
+  }
+
+  updateUI();
+
+  btn.addEventListener('click', () => {
+    liked = !liked;
+    count += liked ? 1 : -1;
+    localStorage.setItem(storageKey, liked.toString());
+    localStorage.setItem(`like-count-${postId}`, count.toString());
+    updateUI();
+  });
+</script>

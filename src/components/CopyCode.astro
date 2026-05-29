@@ -1,0 +1,56 @@
+---
+// Code Copy Button - adds copy functionality to all code blocks
+---
+
+<script>
+  document.querySelectorAll('pre > code').forEach((codeBlock) => {
+    const pre = codeBlock.parentElement;
+    if (!pre) return;
+
+    // Create copy button
+    const button = document.createElement('button');
+    button.className = 'copy-code-btn';
+    button.textContent = '复制';
+    button.style.cssText = `
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      padding: 4px 12px;
+      background: var(--bg-card, #21262d);
+      border: 1px solid var(--border-accent, rgba(88, 166, 255, 0.4));
+      border-radius: 4px;
+      color: var(--accent, #58a6ff);
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    `;
+
+    // Make pre relative positioned
+    pre.style.position = 'relative';
+
+    // Add button
+    pre.appendChild(button);
+
+    // Copy functionality
+    button.addEventListener('click', async () => {
+      const text = codeBlock.textContent || '';
+      try {
+        await navigator.clipboard.writeText(text);
+        button.textContent = '已复制 ✓';
+        button.style.background = 'var(--accent, #58a6ff)';
+        button.style.color = 'var(--bg-primary, #0d1117)';
+
+        setTimeout(() => {
+          button.textContent = '复制';
+          button.style.background = 'var(--bg-card, #21262d)';
+          button.style.color = 'var(--accent, #58a6ff)';
+        }, 2000);
+      } catch (err) {
+        button.textContent = '复制失败';
+        setTimeout(() => {
+          button.textContent = '复制';
+        }, 2000);
+      }
+    });
+  });
+</script>

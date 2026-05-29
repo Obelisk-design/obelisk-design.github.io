@@ -1,0 +1,91 @@
+---
+// Favorite Button
+interface Props {
+  postId: string;
+  title: string;
+}
+
+const { postId, title } = Astro.props;
+---
+
+<button class="favorite-btn" data-post-id={postId} data-title={title}>
+  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+  </svg>
+  <span>收藏</span>
+</button>
+
+<style>
+  .favorite-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .favorite-btn:hover {
+    border-color: var(--accent-secondary, #a371f7);
+  }
+
+  .favorite-btn.favorited {
+    background: rgba(163, 113, 247, 0.1);
+    border-color: var(--accent-secondary, #a371f7);
+    color: var(--accent-secondary, #a371f7);
+  }
+
+  .favorite-btn.favorited svg {
+    fill: var(--accent-secondary, #a371f7);
+  }
+</style>
+
+<script define:vars={{ postId, title }}>
+  const btn = document.querySelector(`.favorite-btn[data-post-id="${postId}"]`);
+  if (!btn) return;
+
+  const storageKey = 'favorites';
+
+  function loadFavorites() {
+    try {
+      return JSON.parse(localStorage.getItem(storageKey) || '[]');
+    } catch {
+      return [];
+    }
+  }
+
+  function saveFavorites(favorites) {
+    localStorage.setItem(storageKey, JSON.stringify(favorites));
+  }
+
+  function updateUI() {
+    const favorites = loadFavorites();
+    const isFavorited = favorites.some(f => f.id === postId);
+
+    if (isFavorited) {
+      btn.classList.add('favorited');
+    } else {
+      btn.classList.remove('favorited');
+    }
+  }
+
+  updateUI();
+
+  btn.addEventListener('click', () => {
+    let favorites = loadFavorites();
+    const existingIndex = favorites.findIndex(f => f.id === postId);
+
+    if (existingIndex >= 0) {
+      favorites.splice(existingIndex, 1);
+    } else {
+      favorites.push({ id: postId, title, timestamp: Date.now() });
+    }
+
+    saveFavorites(favorites);
+    updateUI();
+  });
+</script>

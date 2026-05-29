@@ -1,0 +1,185 @@
+---
+// Favorites Page - List user's favorite posts
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <BaseHead title={`我的收藏 - ${SITE_TITLE}`} description="收藏的文章列表" />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <section class="favorites-header">
+        <h1>我的收藏</h1>
+        <p class="subtitle">本地存储的收藏文章列表</p>
+      </section>
+
+      <section class="favorites-content">
+        <div id="favorites-list"></div>
+        <div id="empty-state" class="empty-state">
+          <svg viewBox="0 0 24 24" width="48" height="48" fill="currentColor">
+            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+          </svg>
+          <p>暂无收藏文章</p>
+          <span>浏览文章时点击收藏按钮即可添加到这里</span>
+        </div>
+      </section>
+
+      <button id="clear-favorites" class="clear-btn">清空收藏</button>
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  .favorites-header {
+    padding: 4rem 0 2rem;
+    text-align: center;
+  }
+
+  .favorites-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .subtitle {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+  }
+
+  .favorites-content {
+    padding-bottom: 3rem;
+  }
+
+  #favorites-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .favorite-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+
+  .favorite-card:hover {
+    border-color: var(--accent-secondary);
+    transform: translateY(-2px);
+  }
+
+  .favorite-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+  }
+
+  .favorite-card time {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--text-muted);
+  }
+
+  .empty-state svg {
+    opacity: 0.3;
+    margin-bottom: 1rem;
+  }
+
+  .empty-state p {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .empty-state span {
+    font-size: 0.9rem;
+  }
+
+  .clear-btn {
+    display: block;
+    margin: 2rem auto;
+    padding: 0.75rem 2rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .clear-btn:hover {
+    border-color: var(--accent-secondary);
+    color: var(--accent-secondary);
+  }
+
+  @media (max-width: 768px) {
+    .favorites-header {
+      padding: 3rem 0 1.5rem;
+    }
+
+    .favorites-header h1 {
+      font-size: 2rem;
+    }
+
+    #favorites-list {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  const favoritesList = document.getElementById('favorites-list');
+  const emptyState = document.getElementById('empty-state');
+  const clearBtn = document.getElementById('clear-favorites');
+
+  function loadFavorites() {
+    try {
+      return JSON.parse(localStorage.getItem('favorites') || '[]');
+    } catch {
+      return [];
+    }
+  }
+
+  function formatDate(timestamp: number) {
+    return new Date(timestamp).toLocaleDateString('zh-CN');
+  }
+
+  function renderFavorites() {
+    const favorites = loadFavorites();
+
+    if (favorites.length === 0) {
+      emptyState.style.display = 'block';
+      favoritesList.innerHTML = '';
+      return;
+    }
+
+    emptyState.style.display = 'none';
+    favoritesList.innerHTML = favorites.map((fav: {id: string; title: string; timestamp: number}) => `
+      <a href="/blog/${fav.id}/" class="favorite-card">
+        <h3>${fav.title}</h3>
+        <time>收藏于 ${formatDate(fav.timestamp)}</time>
+      </a>
+    `).join('');
+  }
+
+  renderFavorites();
+
+  clearBtn.addEventListener('click', () => {
+    if (confirm('确认清空所有收藏？')) {
+      localStorage.removeItem('favorites');
+      renderFavorites();
+    }
+  });
+</script>

@@ -1,0 +1,117 @@
+---
+// Search Component - Pagefind Integration
+---
+
+<button class="search-toggle" aria-label="搜索">
+  <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+  </svg>
+</button>
+
+<div class="search-modal" id="search-modal">
+  <div class="search-container">
+    <input type="search" id="search-input" placeholder="搜索文章..." />
+    <div id="search-results"></div>
+    <button class="close-search" aria-label="关闭">×</button>
+  </div>
+</div>
+
+<style>
+  .search-toggle {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--text-secondary);
+  }
+
+  .search-toggle:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .search-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 10000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .search-modal.active {
+    display: flex;
+  }
+
+  .search-container {
+    background: var(--bg-primary);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    width: 90%;
+    max-width: 600px;
+    padding: 2rem;
+    position: relative;
+  }
+
+  #search-input {
+    width: 100%;
+    padding: 1rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+
+  #search-input:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+
+  #search-results {
+    max-height: 400px;
+    overflow-y: auto;
+  }
+
+  .close-search {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--text-muted);
+    cursor: pointer;
+  }
+</style>
+
+<script>
+  const toggle = document.querySelector('.search-toggle');
+  const modal = document.getElementById('search-modal');
+  const closeBtn = document.querySelector('.close-search');
+
+  toggle.addEventListener('click', () => {
+    modal.classList.add('active');
+    document.getElementById('search-input').focus();
+  });
+
+  closeBtn.addEventListener('click', () => {
+    modal.classList.remove('active');
+  });
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.classList.remove('active');
+    }
+  });
+
+  // Initialize Pagefind when built
+  // Note: Pagefind UI will be loaded automatically after build
+</script>

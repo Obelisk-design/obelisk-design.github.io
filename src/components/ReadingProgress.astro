@@ -1,0 +1,32 @@
+---
+// Reading Progress Bar - shows progress at top of page
+---
+
+<div id="progress-bar"></div>
+
+<style>
+  #progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: var(--accent-gradient);
+    z-index: 9999;
+    transition: width 0.1s ease-out;
+  }
+</style>
+
+<script>
+  const progressBar = document.getElementById('progress-bar');
+
+  function updateProgress() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = (scrollTop / docHeight) * 100;
+    progressBar.style.width = `${Math.min(progress, 100)}%`;
+  }
+
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
+</script>
