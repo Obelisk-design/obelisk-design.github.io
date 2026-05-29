@@ -1,0 +1,113 @@
+---
+// Giscus Comments Component
+// Configuration: https://giscus.app/
+// Required setup:
+// 1. Enable Discussions in your GitHub repo settings
+// 2. Install Giscus GitHub App: https://github.com/apps/giscus
+// 3. Get your repo ID and category from giscus.app
+
+interface Props {
+  // Giscus configuration - fill in your values
+  repo?: string;           // e.g. "Obelisk-design/obelisk-design.github.io"
+  repoId?: string;         // Get from giscus.app
+  category?: string;       // Discussions category name
+  categoryId?: string;     // Get from giscus.app
+  mapping?: string;        // 'pathname' | 'url' | 'title' | 'og:title'
+  theme?: string;          // 'dark' | 'dark_dimmed' | 'preferred_color_scheme'
+}
+
+const {
+  repo = 'Obelisk-design/obelisk-design.github.io',
+  repoId = '', // TODO: Fill in from giscus.app
+  category = 'Announcements',
+  categoryId = '', // TODO: Fill in from giscus.app
+  mapping = 'pathname',
+  theme = 'dark'
+} = Astro.props;
+---
+
+{repoId && categoryId ? (
+  <div class="giscus-container">
+    <script is:inline src="https://giscus.app/client.js"
+      data-repo={repo}
+      data-repo-id={repoId}
+      data-category={category}
+      data-category-id={categoryId}
+      data-mapping={mapping}
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="bottom"
+      data-theme={theme}
+      data-lang="zh-CN"
+      crossorigin="anonymous"
+      async>
+    </script>
+  </div>
+) : (
+  <div class="giscus-placeholder">
+    <p>评论功能待配置</p>
+    <p class="hint">
+      请在 <a href="https://giscus.app/zh-CN" target="_blank">giscus.app</a> 获取配置参数，
+      然后更新 <code>Giscus.astro</code> 中的 repoId 和 categoryId
+    </p>
+  </div>
+)}
+
+<style>
+  .giscus-container {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .giscus-placeholder {
+    margin-top: 3rem;
+    padding: 2rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  .giscus-placeholder p {
+    margin-bottom: 1rem;
+    color: var(--text-secondary);
+  }
+
+  .giscus-placeholder p:first-child {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+  }
+
+  .hint {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .hint a {
+    color: var(--accent);
+  }
+
+  .hint code {
+    color: var(--accent);
+    font-family: var(--font-mono);
+  }
+
+  /* Giscus iframe styling */
+  .giscus {
+    max-width: 100%;
+  }
+
+  @media (max-width: 768px) {
+    .giscus-container {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+    }
+
+    .giscus-placeholder {
+      padding: 1.5rem;
+    }
+  }
+</style>
