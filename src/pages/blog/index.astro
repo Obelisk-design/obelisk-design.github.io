@@ -31,11 +31,11 @@ const posts = (await getCollection('blog')).sort(
             <a href={`/blog/${post.id}/`}>
               {post.data.heroImage && (
                 <div class="post-image">
-                  <Image 
-                    width={index === 0 ? 800 : 400} 
-                    height={index === 0 ? 400 : 200} 
-                    src={post.data.heroImage} 
-                    alt="" 
+                  <Image
+                    width={index === 0 ? 720 : 360}
+                    height={index === 0 ? 360 : 180}
+                    src={post.data.heroImage}
+                    alt=""
                   />
                 </div>
               )}
@@ -169,72 +169,138 @@ const posts = (await getCollection('blog')).sort(
   @media (min-width: 768px) {
     .posts-grid {
       grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .post-card.featured {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .posts-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .post-card.featured {
+      grid-column: span 2;
+    }
+
+    .post-card.featured .post-title {
+      font-size: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .posts-grid {
+      gap: 2rem;
+    }
+
+    .post-card.featured .post-title {
+      font-size: 1.75rem;
     }
   }
 
   @media (max-width: 768px) {
+    .posts-grid {
+      gap: 1.25rem;
+    }
+
     .blog-header {
       padding: 2rem 0 1.5rem;
     }
-    
+
     .blog-header h1 {
       font-size: 2rem;
     }
 
+    .post-card {
+      border-radius: 8px;
+    }
+
     .post-title {
-      font-size: 1.2rem;
+      font-size: 1.15rem;
+      margin-bottom: 0.4rem;
     }
 
     .post-card.featured .post-title {
-      font-size: 1.35rem;
+      font-size: 1.25rem;
     }
-    
+
     .post-content {
       padding: 1.25rem;
     }
-    
+
     .post-description {
       font-size: 0.9rem;
+      margin-bottom: 0.75rem;
       -webkit-line-clamp: 2;
       display: -webkit-box;
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
-  }
-  
-  @media (max-width: 480px) {
-    .blog-header h1 {
-      font-size: 1.75rem;
-    }
-    
-    .blog-header p {
-      font-size: 0.95rem;
-    }
-    
-    .post-card {
-      border-radius: 8px;
-    }
-    
-    .post-content {
-      padding: 1rem;
-    }
-    
-    .post-title {
-      font-size: 1.1rem;
-    }
 
-    .post-card.featured .post-title {
-      font-size: 1.2rem;
-    }
-    
     .post-meta {
       flex-direction: column;
       align-items: flex-start;
       gap: 0.5rem;
+      font-size: 0.8rem;
     }
-    
+
     .tag {
       font-size: 0.75rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .posts-grid {
+      gap: 1rem;
+    }
+
+    .blog-header h1 {
+      font-size: 1.75rem;
+    }
+
+    .blog-header p {
+      font-size: 0.95rem;
+    }
+
+    .post-card {
+      border-radius: 6px;
+    }
+
+    .post-content {
+      padding: 1rem;
+    }
+
+    .post-title {
+      font-size: 1.05rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .post-card.featured .post-title {
+      font-size: 1.15rem;
+    }
+
+    .post-description {
+      font-size: 0.85rem;
+      margin-bottom: 0.5rem;
+      -webkit-line-clamp: 2;
+    }
+
+    .post-meta {
+      gap: 0.4rem;
+      font-size: 0.75rem;
+    }
+
+    .post-tags {
+      gap: 0.4rem;
+    }
+
+    .tag {
+      font-size: 0.7rem;
+      padding: 0.2rem 0.4rem;
     }
   }
 </style>

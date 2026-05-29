@@ -6,28 +6,28 @@
 @import './animations.css';
 
 :root {
-  /* Core palette - deep space blue */
-  --bg-primary: #0a0e17;
-  --bg-secondary: #111827;
-  --bg-card: #1a1f2e;
-  --bg-code: #0d1117;
-  
-  /* Accent - electric cyan */
-  --accent: #00d4ff;
-  --accent-secondary: #7c3aed;
-  --accent-gradient: linear-gradient(135deg, #00d4ff 0%, #7c3aed 100%);
-  
-  /* Text hierarchy */
-  --text-primary: #e2e8f0;
-  --text-secondary: #94a3b8;
-  --text-muted: #64748b;
-  
-  /* Borders & shadows */
-  --border: rgba(148, 163, 184, 0.1);
-  --border-accent: rgba(0, 212, 255, 0.3);
-  --glow: 0 0 20px rgba(0, 212, 255, 0.15);
-  --shadow-soft: 0 4px 24px rgba(0, 0, 0, 0.4);
-  
+  /* Modern tech palette - inspired by GitHub/Vercel/Linear */
+  --bg-primary: #0d1117;     /* GitHub's canvas bg - brighter than before */
+  --bg-secondary: #161b22;   /* GitHub's sidebar bg - clear hierarchy */
+  --bg-card: #21262d;        /* GitHub's card bg - distinct layer */
+  --bg-code: #0d1117;        /* Keep code blocks dark for focus */
+
+  /* Accent - modern blue-violet (Linear + Stripe inspired) */
+  --accent: #58a6ff;         /* GitHub's accent - softer, professional */
+  --accent-secondary: #a371f7; /* Linear's purple - tech-forward */
+  --accent-gradient: linear-gradient(135deg, #58a6ff 0%, #a371f7 100%);
+
+  /* Text hierarchy - higher contrast for readability */
+  --text-primary: #e6edf3;   /* GitHub's primary text - brighter */
+  --text-secondary: #8b949e; /* GitHub's secondary - balanced */
+  --text-muted: #6e7681;     /* GitHub's muted - subtle but visible */
+
+  /* Borders & shadows - cleaner, more defined */
+  --border: rgba(240, 246, 252, 0.1);  /* Brighter border */
+  --border-accent: rgba(88, 166, 255, 0.4);  /* Accent border */
+  --glow: 0 0 20px rgba(88, 166, 255, 0.15);  /* Subtle glow */
+  --shadow-soft: 0 4px 24px rgba(0, 0, 0, 0.3);  /* Lighter shadow */
+
   /* Typography scale */
   --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -62,18 +62,24 @@ body {
   /* Better font rendering */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* Subtle grid pattern overlay */
-  background-image: 
-    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(0, 212, 255, 0.08), transparent),
+  /* Subtle modern gradient overlay */
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(88, 166, 255, 0.05), transparent),
     linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
   background-attachment: fixed;
 }
 
 main {
   width: 100%;
-  max-width: 800px;
+  max-width: 1200px;  /* Modern standard - wider for better content density */
   margin: 0 auto;
   padding: 4rem 1.5rem;
+}
+
+/* Blog post content - narrower for readability */
+.prose {
+  max-width: 900px;  /* Optimal reading width - ~65-75 chars per line */
+  margin: 0 auto;
 }
 
 /* Typography */

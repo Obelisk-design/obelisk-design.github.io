@@ -32,7 +32,7 @@ const keywords = tags ? `${tags.join(', ')}, 技术博客, 深度解析` : '技�
     />
     <style>
       main {
-        max-width: 800px;
+        max-width: 900px;  /* Optimal reading width */
       }
 
       .hero-image {
@@ -176,7 +176,7 @@ const keywords = tags ? `${tags.join(', ')}, 技术博客, 深度解析` : '技�
       <article>
         {heroImage && (
           <div class="hero-image">
-            <Image width={800} height={400} src={heroImage} alt="" />
+            <Image width={900} height={450} src={heroImage} alt="" />
           </div>
         )}
         
