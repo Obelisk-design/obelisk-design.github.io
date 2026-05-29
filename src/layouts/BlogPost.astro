@@ -20,25 +20,30 @@ type Props = CollectionEntry<'blog'>['data'];
 
 const { title, description, pubDate, updatedDate, heroImage, tags } = Astro.props;
 
-const body = Astro.slots.has('default') ? '' : '';
-const readingTime = '约 5 分钟';
+// Extract post id from the current URL path (e.g. /blog/mcp-protocol-deep-dive/ → mcp-protocol-deep-dive)
+const id = Astro.url.pathname.split('/').filter(Boolean).pop()!;
 
 const keywords = tags ? `${tags.join(', ')}, 技术博客, 深度解析` : '技术博客, 深度解析';
 
-// Extract headings from rendered content
-const headings = await Astro.slots.render('default').then((html) => {
-  const headingRegex = /<h([2-3])[^>]*id="([^"]+)"[^>]*>([^<]+)</h\1>/g;
-  const matches = [];
-  let match;
-  while ((match = headingRegex.exec(html)) !== null) {
-    matches.push({
+// Render slot ONCE, then reuse the HTML for both reading time and heading extraction
+const body = await Astro.slots.render('default');
+const readingTime = calculateReadingTime(body);
+
+// Extract h2/h3 headings from rendered body
+const headingRegex = /<h([2-3])[^>]*id="([^"]+)"[^>]*>(.*?)<\/h\1>/g;
+const headings: { depth: number; text: string; slug: string }[] = [];
+let match;
+while ((match = headingRegex.exec(body)) !== null) {
+  // Strip any inline HTML tags (e.g. <code>, <a>) from heading text
+  const text = match[3].replace(/<[^>]*>/g, '').trim();
+  if (text) {
+    headings.push({
       depth: parseInt(match[1]),
       slug: match[2],
-      text: match[3]
+      text,
     });
   }
-  return matches;
-});
+}
 ---
 
 <html lang="zh-CN">
@@ -242,7 +247,7 @@ const headings = await Astro.slots.render('default').then((html) => {
         </header>
         
         <div class="prose">
-          <slot />
+          {body}
         </div>
 
         <CopyCode />

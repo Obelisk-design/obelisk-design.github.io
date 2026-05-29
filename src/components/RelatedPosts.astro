@@ -48,7 +48,7 @@ const relatedPosts = allPosts
             <h3>{post.data.title}</h3>
             <p>{post.data.description}</p>
             <div class="related-meta">
-              <time>{post.data.pubDate.toLocaleDateString('zh-CN')}</time>
+              <time>{post.data.pubDate ? new Date(post.data.pubDate).toLocaleDateString('zh-CN') : '未知日期'}</time>
               {post.data.tags && (
                 <div class="related-tags">
                   {post.data.tags.filter(tag => currentTags.includes(tag)).map((tag) => (
