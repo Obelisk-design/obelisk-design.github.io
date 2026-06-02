@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Pre-commit hook: verify pnpm-lock.yaml is up to date when package.json changes
+STAGED=$(git diff --cached --name-only --diff-filter=ACM | grep "package.json")
+[ -z "$STAGED" ] && exit 0
+
+if pnpm install --frozen-lockfile --prefer-offline > /dev/null 2>&1; then
+  exit 0
+fi
+
+echo ""
+echo "❌ pnpm-lock.yaml is out of sync with package.json"
+echo "   Fix: pnpm install && git add pnpm-lock.yaml"
+echo ""
+exit 1
