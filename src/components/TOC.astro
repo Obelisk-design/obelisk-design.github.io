@@ -33,6 +33,34 @@ const tocItems = headings.filter(h => h.depth >= 2 && h.depth <= 3);
     background: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: 8px;
+    /* 无感滚动条 - Firefox */
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+    /* hover 时才显示滚动条 */
+    transition: scrollbar-color 0.3s;
+  }
+
+  .toc:hover {
+    scrollbar-color: var(--border) transparent;
+  }
+
+  /* 无感滚动条 - Chrome/Safari/Edge */
+  .toc::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .toc::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .toc::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 2px;
+    transition: background 0.3s;
+  }
+
+  .toc:hover::-webkit-scrollbar-thumb {
+    background: var(--border);
   }
 
   .toc h4 {
