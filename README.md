@@ -81,7 +81,6 @@ pnpm run build
 | 分支 | 用途 |
 |------|------|
 | `main` | 生产分支，GitHub Pages 从此构建部署 |
-| `dev-blog` | 日常内容推送，每日 17:00 自动合并到 `main` |
 
 ## License
 
