@@ -2,7 +2,7 @@
 title: "个微销售 · 企微管理：场景一泳道图设计"
 pubDate: 2026-10-30
 description: "SCRM 场景一的全流程泳道图——客户、销售、系统服务、管理员四角色协作，个人微信与企业微信之间的信息同步路径设计"
-heroImage: '../../assets/blog-placeholder-1.jpg'
+heroImage: '../../assets/scrm-scene1-swimlane-hero.webp'
 ---
 
 ## 背景
